@@ -1,0 +1,797 @@
+/* Базовый сброс */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #f3f4f6;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Мобильный фрейм */
+.app-container {
+  width: 100%;
+  max-width: 448px; /* max-w-md */
+  height: 100vh;
+  background-color: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-left: 1px solid #f3f4f6;
+  border-right: 1px solid #f3f4f6;
+}
+
+.scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 112px; /* pb-28 */
+  width: 100%;
+  position: relative;
+  z-index: 0;
+}
+
+/* Кнопка копирования в шапке */
+.copy-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 30;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 9999px;
+  border: none;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.copy-btn:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* Шапки экранов */
+.header-banner {
+  background: linear-gradient(180deg, #b35aeb 0%, #cf8df5 50%, #ffffff 100%);
+  padding: 40px 24px 80px 24px;
+  position: relative;
+}
+
+.header-title {
+  font-size: 2.75rem;
+  line-height: 1;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: 0.025em;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.header-subtitle {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  width: 91.666667%;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* ================= ЭКРАН 1: ГЛАВНАЯ ================= */
+.home-content {
+  padding: 0 20px 24px 20px;
+  margin-top: -32px;
+  position: relative;
+  z-index: 20;
+}
+
+.home-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid #f3f4f6;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ================= ЭКРАН 2: ПОВТОРЕНИЕ ================= */
+.repeat-list {
+  padding: 0 20px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 20;
+}
+
+.repeat-card {
+  border: 2px solid #f3f4f6;
+  border-radius: 16px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.repeat-card:hover {
+  border-color: #e3b8fc;
+}
+
+.repeat-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 16px;
+  padding: 4px 0;
+}
+
+.repeat-card-title {
+  font-weight: 800;
+  color: #be6cf1;
+  font-size: 1.5rem;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.repeat-card-subtitle {
+  color: #9ca3af;
+  font-weight: 500;
+  font-size: 13px;
+  margin-top: 4px;
+  line-height: 1;
+}
+
+.repeat-card-icon-wrapper {
+  background: linear-gradient(90deg, #ffffff 0%, #d6a1f5 50%, #c26deb 100%);
+  padding-left: 48px;
+  padding-right: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-top-right-radius: 0.85rem;
+  border-bottom-right-radius: 0.85rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.repeat-card-icon-wrapper svg {
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* ================= ЭКРАН 3: АККАУНТ ================= */
+.account-header {
+  background: linear-gradient(180deg, #b35aeb 0%, #cf8df5 50%, #ffffff 100%);
+  padding: 40px 24px 64px 24px;
+  position: relative;
+}
+
+.account-header .header-title {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.card {
+  border-radius: 16px;
+  border: 2px solid #ffffff;
+  padding: 16px;
+}
+
+/* Карточка почты */
+.email-card {
+  background-color: #F8EEFD;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.email-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.email-user-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.email-icon-box {
+  background-color: #f6ebff;
+  border: 2px solid #dca4fb;
+  padding: 10px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-details {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(88, 28, 135, 0.6);
+  font-weight: 700;
+}
+
+.email-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dots-btn {
+  padding: 8px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: rgba(168, 78, 230, 0.8);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dots-btn:hover {
+  background-color: rgba(243, 232, 255, 0.7);
+  color: #a84ee6;
+}
+
+.dots-btn.active {
+  background-color: #e9cef8;
+  color: #a84ee6;
+}
+
+/* Раскрывающийся контейнер кнопок */
+.email-actions-panel {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.email-actions-panel.open {
+  max-height: 180px;
+  opacity: 1;
+}
+
+.actions-divider {
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px solid rgba(233, 213, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Кнопки действий с объёмной границей и эффектом вдавливания */
+.action-btn {
+  width: 100%;
+  font-weight: 800;
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.075s ease, background 0.15s ease;
+}
+
+.action-btn:active {
+  transform: translateY(3px);
+}
+
+.btn-logout {
+  background-color: #ffffff;
+  color: #374151;
+  border: 2px solid #e5e7eb;
+  border-bottom: 4px solid #e5e7eb;
+}
+
+.btn-logout:hover {
+  background-color: #f9fafb;
+}
+
+.btn-delete {
+  background-color: #FFF0F0;
+  color: #FF4B4B;
+  border: 2px solid #FFD0D0;
+  border-bottom: 4px solid #FFD0D0;
+}
+
+.btn-delete:hover {
+  background-color: #FFE5E5;
+}
+
+/* Блок общего прогресса */
+.overall-progress-wrapper {
+  max-height: 120px;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.overall-progress-wrapper.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.overall-progress-card {
+  margin-top: 14px;
+  background-color: #F9F2FD;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.overall-percentage {
+  display: block;
+  font-size: 24px;
+  font-weight: 900;
+  color: #a84ee6;
+}
+
+.mastered-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f6ebff;
+  border: 2px solid #dca4fb;
+  color: #a84ee6;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Таблица прогресса */
+.progress-table-section {
+  padding: 0 20px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 20;
+  margin-top: -32px;
+  transition: all 0.3s ease;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+  margin-bottom: 10px;
+}
+
+.table-header h2 {
+  color: #1f2937;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.tasks-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+}
+
+.table-container {
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.table-row {
+  padding: 16px;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.15s ease;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:hover {
+  background-color: rgba(249, 250, 251, 0.5);
+}
+
+.row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.row-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.row-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.row-icon-box.complete {
+  background-color: #58CC00;
+}
+
+.row-icon-box.incomplete {
+  background: linear-gradient(135deg, #dca4fb 0%, #b35aeb 100%);
+}
+
+.row-icon-box svg {
+  width: 18px;
+  height: 18px;
+}
+
+.row-titles .title {
+  font-weight: 800;
+  color: #1f2937;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.row-titles .subtitle {
+  color: #9ca3af;
+  font-weight: 500;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.row-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress-text {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.progress-text.complete {
+  color: #58CC00;
+}
+
+.progress-text.incomplete {
+  color: #c075f2;
+}
+
+/* Фирменная шкала Duolingo */
+.progress-bar-bg {
+  width: 100%;
+  background-color: #e5e5e5;
+  height: 14px;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 8px;
+  position: relative;
+  padding: 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  position: relative;
+  transition: width 0.5s ease;
+}
+
+.progress-bar-fill.complete {
+  background-color: #58CC00;
+}
+
+.progress-bar-fill.incomplete {
+  background-color: #c075f2;
+}
+
+/* Глянцевый световой блик */
+.specular-highlight {
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  right: 6px;
+  height: 3.5px;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+}
+
+/* ================= НАВИГАЦИОННОЕ МЕНЮ ================= */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 2px solid #f3f4f6;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 24px;
+  z-index: 20;
+}
+
+.nav-item {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.7;
+  transition: all 0.15s ease;
+}
+
+.nav-item:hover {
+  opacity: 1;
+}
+
+.nav-item:active {
+  transform: scale(0.95);
+}
+
+.nav-item.active {
+  opacity: 1;
+}
+
+/* Активное состояние для Repeat и Account */
+.nav-item.active .nav-circle {
+  border: 4px solid #b5e0f7;
+  background-color: #ebfbff;
+  padding: 6px;
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.nav-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item.active .nav-circle svg {
+  background-color: #c57bf3;
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 10px;
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+}
+
+.nav-item:not(.active) .nav-circle svg {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border-radius: 9999px;
+  padding: 10px;
+  width: 28px;
+  height: 28px;
+}
+
+/* Главная иконка */
+.nav-icon-home {
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+}
+
+.nav-item#nav-home-btn.active {
+  transform: scale(1.05);
+}
+
+/* ================= МОДАЛЬНОЕ ОКНО ================= */
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: opacity 0.18s ease;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  width: 100%;
+  max-width: 384px; /* max-w-sm */
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: modalScale 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalScale {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-icon-container {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-icon-container.purple {
+  background-color: #f3e8ff;
+  color: #a84ee6;
+}
+
+.modal-icon-container.red {
+  background-color: #FFF0F0;
+  color: #FF4B4B;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #1f2937;
+}
+
+.modal-desc {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 6px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.modal-btn-confirm {
+  width: 100%;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: none;
+  border-bottom: 4px solid;
+  cursor: pointer;
+  transition: transform 0.08s ease;
+}
+
+.modal-btn-confirm:active {
+  transform: translateY(2px);
+}
+
+.modal-btn-confirm.purple {
+  background-color: #a84ee6;
+  border-color: #7f2bb8;
+}
+
+.modal-btn-confirm.purple:hover {
+  background-color: #973fd3;
+}
+
+.modal-btn-confirm.red {
+  background-color: #FF4B4B;
+  border-color: #D92C2C;
+}
+
+.modal-btn-confirm.red:hover {
+  background-color: #ea3c3c;
+}
+
+.modal-btn-cancel {
+  width: 100%;
+  background-color: #f3f4f6;
+  color: #374151;
+  font-weight: 800;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: none;
+  border-bottom: 4px solid #d1d5db;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+.modal-btn-cancel:hover {
+  background-color: #e5e7eb;
+}
+
+.modal-btn-cancel:active {
+  transform: translateY(2px);
+}
+
+/* ================= ТОСТ ================= */
+.toast {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(17, 24, 39, 0.9);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -8px);
+}
+
+.hidden {
+  display: none !important;
+}
