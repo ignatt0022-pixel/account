@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Подготовка к ОГЭ по математике</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Главный мобильный контейнер -->
+  <div class="app-container">
+    
+    <!-- Кнопка копирования в правом верхнем углу -->
+    <button id="copy-btn" class="copy-btn" title="Скопировать">
+      <svg id="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+      </svg>
+      <svg id="check-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </button>
+
+    <!-- Основной прокручиваемый контент -->
+    <div class="scroll-area">
+
+      <!-- ================= ВКЛАДКА 1: ГЛАВНАЯ ================= -->
+      <section id="tab-home" class="tab-view hidden">
+        <div class="header-banner">
+          <h1 class="header-title">Главная</h1>
+          <p class="header-subtitle">Добро пожаловать в тренажер подготовки к ОГЭ по математике!</p>
+        </div>
+        <div class="home-content">
+          <div class="home-card">
+            <p>Выберите раздел в нижнем меню для тренировки заданий или просмотра прогресса.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ВКЛАДКА 2: ПОВТОРЕНИЕ ================= -->
+      <section id="tab-repeat" class="tab-view">
+        <div class="header-banner">
+          <h1 class="header-title">Повторение</h1>
+          <p class="header-subtitle">Система подберет случайные задания из всех уроков выбранной темы!</p>
+        </div>
+        <div class="repeat-list" id="repeat-list-container">
+          <!-- Генерируется из script.js -->
+        </div>
+      </section>
+
+      <!-- ================= ВКЛАДКА 3: АККАУНТ ================= -->
+      <section id="tab-account" class="tab-view hidden">
+        <div class="account-header">
+          <h1 class="header-title">Аккаунт</h1>
+
+          <!-- Карточка почты с троеточием -->
+          <div class="card email-card">
+            <div class="email-card-header">
+              <div class="email-user-info">
+                <div class="email-icon-box">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a84ee6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </div>
+                <div class="email-details">
+                  <span class="label">ЭЛЕКТРОННАЯ ПОЧТА</span>
+                  <span class="email-value">ignatt002@gmail.com</span>
+                </div>
+              </div>
+
+              <!-- Кнопка с троеточием -->
+              <button id="email-dots-btn" class="dots-btn" type="button" title="Опции аккаунта">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="1"/>
+                  <circle cx="12" cy="5" r="1"/>
+                  <circle cx="12" cy="19" r="1"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Раскрывающееся меню действий -->
+            <div id="email-actions-panel" class="email-actions-panel">
+              <div class="actions-divider">
+                <button id="btn-logout" class="action-btn btn-logout" type="button">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a84ee6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" x2="9" y1="12" y2="12"/>
+                  </svg>
+                  <span>Выйти из аккаунта</span>
+                </button>
+
+                <button id="btn-delete" class="action-btn btn-delete" type="button">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF4B4B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                  </svg>
+                  <span>Удалить аккаунт</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Блок общего прогресса (плавно исчезает при раскрытии меню) -->
+          <div id="overall-progress-wrapper" class="overall-progress-wrapper">
+            <div class="card overall-progress-card">
+              <div class="overall-info">
+                <span class="label">ОБЩИЙ ПРОГРЕСС</span>
+                <span class="overall-percentage" id="overall-percentage">68%</span>
+              </div>
+              <div class="mastered-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="6"/>
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                </svg>
+                <span id="mastered-badge-text">1 из 8 освоено</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Таблица прогресса (всегда на экране) -->
+        <div class="progress-table-section">
+          <div class="table-header">
+            <h2>Таблица прогресса</h2>
+            <span class="tasks-count">8 заданий</span>
+          </div>
+
+          <div class="table-container" id="progress-table-container">
+            <!-- Генерируется из script.js -->
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Нижнее навигационное меню -->
+    <nav class="bottom-nav">
+      <!-- Кнопка: Главная -->
+      <button id="nav-home-btn" class="nav-item" type="button" title="Главная">
+        <svg class="nav-icon-home" width="36" height="36" viewBox="0 0 24 24" fill="#ffce24" stroke="#f59f1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </button>
+
+      <!-- Кнопка: Повторение -->
+      <button id="nav-repeat-btn" class="nav-item active" type="button" title="Повторение">
+        <div class="nav-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m17 2 4 4-4 4"/>
+            <path d="M3 11v-1a4 4 0 0 1 4-4h14"/>
+            <path d="m7 22-4-4 4-4"/>
+            <path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+      </button>
+
+      <!-- Кнопка: Аккаунт -->
+      <button id="nav-account-btn" class="nav-item" type="button" title="Аккаунт">
+        <div class="nav-circle">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+      </button>
+    </nav>
+
+    <!-- Модальное окно подтверждения -->
+    <div id="confirm-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div id="modal-icon-container" class="modal-icon-container"></div>
+        <h3 id="modal-title" class="modal-title"></h3>
+        <p id="modal-desc" class="modal-desc hidden"></p>
+        
+        <div class="modal-actions">
+          <button id="modal-confirm-btn" class="modal-btn-confirm" type="button"></button>
+          <button id="modal-cancel-btn" class="modal-btn-cancel" type="button">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Всплывающий тост -->
+    <div id="toast" class="toast hidden">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <span id="toast-message"></span>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
